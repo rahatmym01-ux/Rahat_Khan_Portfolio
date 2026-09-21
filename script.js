@@ -33,7 +33,7 @@ function updateLiveTime() {
   const timeEl = document.getElementById('liveTime');
   const dateEl = document.getElementById('liveDate');
 
-  if (!timeEl || !dateEl) return;
+  if (!timeEl) return;
 
   const now = new Date();
 
@@ -45,16 +45,19 @@ function updateLiveTime() {
     hour12: true
   }).format(now);
 
-  const date = new Intl.DateTimeFormat('en-BD', {
-    timeZone: 'Asia/Dhaka',
-    weekday: 'short',
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric'
-  }).format(now);
-
   timeEl.textContent = time;
-  dateEl.textContent = date + ' • Bangladesh (UTC+6)';
+
+  if (dateEl) {
+    const date = new Intl.DateTimeFormat('en-BD', {
+      timeZone: 'Asia/Dhaka',
+      weekday: 'short',
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    }).format(now);
+
+    dateEl.textContent = date + ' • Bangladesh (UTC+6)';
+  }
 }
 
 updateLiveTime();
@@ -70,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!form.checkValidity()) return;
       event.preventDefault();
       success.classList.add('show');
-      setTimeout(() => form.submit(), 700);
+      setTimeout(() => form.submit(), 600);
     });
   }
 });

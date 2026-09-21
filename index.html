@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header class="header">
     <nav class="nav container">
@@ -101,35 +102,48 @@
       </div>
     </section>
 
-    <section id="contact" class="section contact-section">
-      <div class="container contact-box contact-form-box">
-        <div class="contact-info">
-          <p class="eyebrow">LET'S WORK TOGETHER</p>
-          <h2>Have a design<br><span>project in mind?</span></h2>
-          <p class="contact-copy">Tell me what you need and let's turn your idea into a professional visual.</p>
+    <section class="contact-section">
+  <div class="contact-container">
 
-          <div class="live-time-card">
-            <span class="time-dot"></span>
-            <div>
-              <small>LIVE SERVER TIME</small>
-              <strong id="liveTime">Loading...</strong>
-              <span id="liveDate">Loading...</span>
-            </div>
-          </div>
+    <!-- বাম পাশ: টেক্সট, ঘড়ি ও ফর্ম -->
+    <div class="contact-left">
+      <span class="sub-heading">LET'S WORK TOGETHER</span>
+      <h2 class="main-heading">Have a design <br><span class="highlight">project in mind?</span></h2>
+      <p class="description">Tell me what you need and let's turn your idea into a professional visual.</p>
+
+      <!-- কন্ট্যাক্ট ফর্ম -->
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <!-- ডান পাশ: কনট্যাক্ট + সময় + সোশ্যাল লিংক -->
+    <div class="contact-right">
+      <div class="contact-inline">
+        <div class="time-card">
+          <span class="dot"></span>
+          <span id="liveTime">12:14:16 PM</span>
         </div>
 
-        <form id="contact-form" class="contact-form">
+        <a href="tel:+8801670288370" class="social-card call-card mini-call-card">
+          <div class="icon">📞</div>
+          <span class="phone-number">01670288370</span>
+        </a>
 
-    <input type="text" name="name" placeholder="Your Name" required>
-
-    <input type="email" name="email" placeholder="Your Email" required>
-
-    <textarea name="message" placeholder="Your Message" required></textarea>
-
-    <button type="submit">Send Message</button>
-
-</form>
+        <div class="social-mini">
+          <a href="https://wa.me/8801670288370" target="_blank" rel="noopener noreferrer">WA</a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">FB</a>
+          <a href="https://www.fiverr.com/" target="_blank" rel="noopener noreferrer">FV</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">IN</a>
+        </div>
       </div>
+    </div>
+
+  </div>
+
     </section>
   </main>
 
@@ -137,6 +151,12 @@
     <div class="container footer-inner">
       <div class="logo">R<span>K</span>.</div>
       <p>© <span id="year"></span> Rahat Khan. All rights reserved.</p>
+      <div class="footer-social" aria-label="Social media links">
+        <a href="https://wa.me/8801670288370" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.fiverr.com/" target="_blank" rel="noopener noreferrer">Fiverr</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
       <a href="#home">Back to top ↑</a>
     </div>
   </footer>
@@ -155,31 +175,27 @@
     });
 
     // Contact Form
-    document.getElementById("contact-form").addEventListener("submit", function(event) {
+    const contactForm = document.querySelector('.contact-form');
 
-        event.preventDefault();
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        emailjs.sendForm(
-            "service_v76gl5w",
-            "template_ekutydt",
-            this
-        )
-        .then(function() {
-
-            alert("✅ Message sent successfully!");
-
-            document.getElementById("contact-form").reset();
-
-        })
-        .catch(function(error) {
-
-            alert("❌ Message failed to send!");
-
-            console.log("EmailJS Error:", error);
-
+            emailjs.sendForm(
+                'service_v76gl5w',
+                'template_ekutydt',
+                this
+            )
+            .then(function () {
+                alert('✅ Message sent successfully!');
+                contactForm.reset();
+            })
+            .catch(function (error) {
+                alert('❌ Message failed to send!');
+                console.log('EmailJS Error:', error);
+            });
         });
-
-    });
+    }
 </script>
 <a href="https://wa.me/8801670288370"
    class="whatsapp-btn"
